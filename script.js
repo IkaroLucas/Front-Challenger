@@ -69,7 +69,7 @@ btn_prev.addEventListener('click', function (event) {
     if (moviesData.length < 4) {
         x = 0;
         y = 5;
-    }
+    };
     if (x < 0) {
         x = moviesData.length - 5;
         y = moviesData.length;
@@ -118,7 +118,6 @@ function getMovieDay() {
     fetch('https://tmdb-proxy.cubos-academy.workers.dev/3/movie/436969/videos?language=pt-BR').then(resposta => {
         return resposta.json()
     }).then(body => {
-        console.log(body);
         bodyMovieDay = body;
         console.log(body.results[0].key);
         a_highlight_videolink.href = `https://www.youtube.com/watch?v=${body.results[0].key}`;
@@ -131,7 +130,8 @@ function getMovieDay() {
 getMovieDay();
 
 function renderMovieDay() {
-    div_highlight_video.backgroundImage = `url(${bodyMovieDay.poster_path})`;
+    div_highlight_video.style.backgroundImage = `url(${bodyMovieDay.backdrop_path})`;
+    div_highlight_video.style.backgroundSize = 'cover';
     h3_highlight_title.textContent = bodyMovieDay.title;
     span_highlight_rating.textContent = bodyMovieDay.vote_average;
 
